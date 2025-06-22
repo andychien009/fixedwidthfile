@@ -17,7 +17,7 @@ import traceback
 
 # character references used in parameters are 1 based
 
-class FixedLengthFile:
+class FixedWidthFile:
     def __init__(self, fsfpath):
         self.flf = None
         self.fs = []

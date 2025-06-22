@@ -1,4 +1,4 @@
-from flf.fixedlengthfile import FixedLengthFile
+from fwf.fixedlengthfile import FixedLengthFile
 
 import pandas as pd
 import numpy as np
@@ -7,19 +7,19 @@ FS = "filespec.csv"
 I = "sample.txt"
 O = "sampleout.txt"
 
-flf = FixedLengthFile(FS)
+fwf = FixedWidthFile(FS)
 
 # Method 1: From Fixed Length File to
 #    Python array, to Pandas Dataframe
 data = []
-for l in flf.getIterator(I):
+for l in fwf.getIterator(I):
     data.append(l)
-df = pd.DataFrame(data, columns=flf.getHeader())
+df = pd.DataFrame(data, columns=fwf.getHeader())
 print(f"{df.head()}")
 
 # Method 2: From Fixed Length File to
 #    Pandas Dataframe
-df1 = flf.getDataFrame(I)
+df1 = fwf.getDataFrame(I)
 print(f"{df1.head()}")
 
 # Output Method 1: To CSV using Pandas Dataframe
@@ -29,4 +29,4 @@ df.to_csv("sample.csv", index=False)
 #    Pandas Dataframe
 with open(O, 'w') as ofile:
     for i, r in df.iterrows():
-        ofile.write(f"{flf.getFlfLine(r)}\n")
+        ofile.write(f"{fwf.getFlfLine(r)}\n")
