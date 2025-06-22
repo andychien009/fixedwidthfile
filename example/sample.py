@@ -9,7 +9,7 @@ O = "sampleout.txt"
 
 fwf = FixedWidthFile(FS)
 
-# Method 1: From Fixed Length File to
+# Input Method 1: From Fixed Length File to
 #    Python array, to Pandas Dataframe
 data = []
 for l in fwf.getIterator(I):
@@ -17,7 +17,7 @@ for l in fwf.getIterator(I):
 df = pd.DataFrame(data, columns=fwf.getHeader())
 print(f"{df.head()}")
 
-# Method 2: From Fixed Length File to
+# Input Method 2: From Fixed Length File to
 #    Pandas Dataframe
 df1 = fwf.getDataFrame(I)
 print(f"{df1.head()}")
