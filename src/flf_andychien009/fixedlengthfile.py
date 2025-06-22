@@ -91,7 +91,7 @@ class FixedLengthFile:
     def replaceAtLoc(self, l, s, e, rep):
         return replaceAtLoc(l, s, e, rep)
 
-    def getLine(self, data):
+    def getFlfLine(self, data):
         if type(data) is dict:
             d = data
         elif type(data) is pd.Series:

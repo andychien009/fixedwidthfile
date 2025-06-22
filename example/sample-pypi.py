@@ -1,4 +1,4 @@
-from flf.fixedlengthfile import FixedLengthFile
+from flf_andychien009.fixedlengthfile import FixedLengthFile
 
 import pandas as pd
 import numpy as np
