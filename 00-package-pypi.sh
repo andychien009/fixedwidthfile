@@ -8,7 +8,7 @@
 python3 -m build
 
 # QA
-python3 -m twine upload --repository testpypi dist/*
+# python3 -m twine upload --repository testpypi dist/*
 
 # prod
-# python3 -m twine upload --repository testpypl dist/*
+python3 -m twine upload dist/*
