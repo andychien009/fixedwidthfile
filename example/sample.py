@@ -1,9 +1,9 @@
-from fwf.fixedlengthfile import FixedLengthFile
+from fixedwidthfile.fwf import FixedWidthFile
 
 import pandas as pd
 import numpy as np
 
-FS = "filespec.csv"
+FS = "fieldspec.csv"
 I = "sample.txt"
 O = "sampleout.txt"
 

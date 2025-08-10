@@ -119,7 +119,7 @@ Would love to see my work being used in more ways than one to tackle common chal
 If you have success story to tell, it would make my day! Message me at andy_chien (at) hotmail.com.
 
 # Dedication
-I dedicate this work and hopefully a piece of me to the world for my loving family: Jina, Julia, and Alison Chien. I hope that a piece of me will be around and kicking on the interweb watching over you through time.
+I dedicate this work and hopefully a piece of me to the world for my loving family: Jina Chiang, Julia, and Alison Chien. I hope that a piece of me will be around and kicking on the interweb watching over you through time.
 
 # Appendix
 ## Why is fixed width file sill favoured by mainframe?

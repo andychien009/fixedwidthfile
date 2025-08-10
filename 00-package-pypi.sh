@@ -6,4 +6,9 @@
 # python3 -m pip install --upgrade build twine
 
 python3 -m build
-python3 -m twine upload --repository testpypl dist/*
+
+# QA
+python3 -m twine upload --repository testpypi dist/*
+
+# prod
+# python3 -m twine upload --repository testpypl dist/*

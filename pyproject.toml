@@ -3,7 +3,7 @@ requires = ["hatchling >= 1.26", "pandas >= 2.3.0", "numpy >= 2.3.0"]
 build-backend = "hatchling.build"
 
 [project]
-name = "fwf"
+name = "fixedwidthfile"
 version = "0.8"
 authors = [
   { name="Andy Chien", email="looking.for.andy.chien@gmail.com" },
