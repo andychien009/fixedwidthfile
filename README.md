@@ -1,7 +1,7 @@
 # Overview
 fixedwidthfile is a Python library that assists with the processing of fixed width file.
 
-While-CSV-file-format-remain-the-popular-non-proprietary-data-file-format-in-the-field-of-data-analytics,-much-of-the-main-frame-input/output-file-remain-to-be-fixed-width-file-(see-[appendix](#why-is-fixed-width-file-sill-favoured-by-mainframe)-to-gain-an-understanding-why).-
+While CSV file format remain the popular non proprietary data file format in the field of data analytics, much of the main frame input/output file remain to be fixed width file (see [appendix](#why-is-fixed-width-file-sill-favoured-by-mainframe) to gain an understanding why). 
 
 This library defines fixed width file as follows.
 > Data with one continuous string having no delimiter for each of the record field. The deciphering of the data fields within the record can only be achieved by cross-referencing a file specification/definition that accompany the fixed width file in question.
@@ -14,8 +14,7 @@ For example the data file below
 0123456789abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqrstuvwxyz
 0123456789abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqrstuvwxyz
 ```
-
-May-have-the-following-definition/specification-file.-It-is-important-to-notice-this-package-uses-1-based-positioning-for-the-string-start/end-character.-This-design-choice-is-explained-in-the-[appendix](#why-does-your-library-use-1-based-positioning-instead-of-0-based)
+May have the following definition/specification file. It is important to notice this package uses 1 based positioning for the string start/end character. This design choice is explained in the [appendix](#why-does-your-library-use-1-based-positioning-instead-of-0-based)
 ```
 fname,start,end,decimal
 F1,1,10,
@@ -23,7 +22,6 @@ F2,17,22,
 F3,34,34,
 F4,35,40,
 ```
-
 The two pieces of information above together can be used to produce a csv dataset that looks like the following when parsed out
 ```
 F1,F2,F3,F4
@@ -71,7 +69,7 @@ The following table explains the field specification
 
 Back to Python, attaching the field specification to the fixedwidthfile definition
 ```
-fwf = FixedWidthFile("field specification.csv")
+fwf = FixedWidthFile("fieldspec.csv")
 ```
 
 At this point, you have several methods of using the field specification representation to access the file.
@@ -131,7 +129,7 @@ Traceback (most recent call last):
 Exception: There maybe an issue with the coverage of the spec file,
     please review the following position (position: [11, 12, 13, 14, 15, 16, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33])
     a full coverage should have each of the character position
-    referenced exactly onces (1) coverage: '1111111111000000111111000000000001111111'
+    referenced exactly once (1) coverage: '1111111111000000111111000000000001111111'
 ```
 The method will exits with raised error if the condition is not met, and provide you with information about the characters that is not read exactly once. Also, it will provide you with a coverage string where each of the numbers in the string represents the number of times the character at the given position is read. 
 
@@ -142,7 +140,7 @@ print(f"{coverage}")
 ```
 
 # About Me
-My name is Hsiang-An (Andy) Chien. Currently, full-time data scientist slash ETL engineer (the title changes so fast these days), part-time general computing and gaming enthuiast.
+My name is Hsiang-An (Andy) Chien. Currently, full-time data scientist slash ETL engineer (the title changes so fast these days), part-time general computing and gaming enthusiast.
 
 Would love to see my work being used in more ways than one to tackle common challenges others may have encountered along their way. Share this library with others who may need it.
 

@@ -65,7 +65,7 @@ class FixedWidthFile:
             errtxt = f"There maybe an issue with the coverage of the spec file,\n" + \
                   f"    please review the following position (position: {issue})\n" + \
                   f"    a full coverage should have each of the character position\n" + \
-                  f"    referenced exactly onces (1) " + \
+                  f"    referenced exactly once (1) " + \
                   f"coverage: '{coverage}'"
             if raiseError:
                 raise Exception(errtxt)
