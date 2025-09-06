@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "fixedwidthfile"
-version = "0.8"
+version = "0.83"
 authors = [
   { name="Andy Chien", email="looking.for.andy.chien@gmail.com" },
 ]

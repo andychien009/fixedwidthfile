@@ -29,4 +29,9 @@ df.to_csv("sample.csv", index=False)
 #    Pandas Dataframe
 with open(O, 'w') as ofile:
     for i, r in df.iterrows():
-        ofile.write(f"{fwf.getFlfLine(r)}\n")
+        ofile.write(f"{fwf.getFwfLine(r)}\n")
+
+# Validation: Check fixed width file specification
+#    coverage
+coverage = fwf.checkSpecCoverage(False)
+print(f"{coverage}")

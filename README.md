@@ -1,7 +1,7 @@
 # Overview
 fixedwidthfile is a Python library that assists with the processing of fixed width file.
 
-While CSV file format remain the popular non-proprietary data file format in the field of data analytics, much of the main frame input/output file remain to be fixed width file (see [appendix](#app-fll) to gain an understanding why). 
+While-CSV-file-format-remain-the-popular-non-proprietary-data-file-format-in-the-field-of-data-analytics,-much-of-the-main-frame-input/output-file-remain-to-be-fixed-width-file-(see-[appendix](#why-is-fixed-width-file-sill-favoured-by-mainframe)-to-gain-an-understanding-why).-
 
 This library defines fixed width file as follows.
 > Data with one continuous string having no delimiter for each of the record field. The deciphering of the data fields within the record can only be achieved by cross-referencing a file specification/definition that accompany the fixed width file in question.
@@ -15,7 +15,7 @@ For example the data file below
 0123456789abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqrstuvwxyz
 ```
 
-May have the following definition/specification file. It is important to notice this package uses 1-based positioning for the string start/end character. This design choice is explained in the [appendix](#app-1based)
+May-have-the-following-definition/specification-file.-It-is-important-to-notice-this-package-uses-1-based-positioning-for-the-string-start/end-character.-This-design-choice-is-explained-in-the-[appendix](#why-does-your-library-use-1-based-positioning-instead-of-0-based)
 ```
 fname,start,end,decimal
 F1,1,10,
@@ -35,9 +35,9 @@ F1,F2,F3,F4
 ```
 
 # Prerequisite
-This library does not have non Python core library (3.11) dependency. However, it is also dependent on the Pandas (https://pypi.org/project/pandas/) library for data processing methods using Pandas DataFrame.
+This library does not have non Python core library (3.11) [dependency](dependency). However, it is also dependent on the Pandas (https://pypi.org/project/pandas/) library for data processing methods using Pandas DataFrame.
 
-Install pandas using
+Install pandas and numpy using
 ```
 pip install pandas numpy
 ```
@@ -45,7 +45,7 @@ pip install pandas numpy
 # Installation
 This package is available from Pypi.org. Install it conveniently as follows
 ```
-pip install fixedwithfile
+pip install fixedwidthfile
 ```
 
 # Basic Uses
@@ -53,7 +53,7 @@ Example uses can be found in the source folder [example/sample.py](example/sampl
 
 Importing the library
 ```
-from fwf import FixedWidthFile
+from fixedwidthfile.fwf import FixedWidthFile
 ```
 
 Building the field specification file in csv
@@ -109,8 +109,38 @@ Hopefully I have built in enough error messages to help guide you through the re
 ```
 with open(O, 'w') as ofile:
     for i, r in df.iterrows():
-        ofile.write(f"{fwf.getFlfLine(r)}\n")
+        ofile.write(f"{fwf.getFwfLine(r)}\n")
 ```
+
+## Validate Specification Coverage
+Sometimes it becomes a concern that the file specification does not fully cover the entire length of the fixed width file OR that certain characters has been picked up more than once. It is possible to produce a string that show its users how many times the character has been read by the specification by using the following.
+
+```
+fwf = FixedWidthFile('myspec.csv')
+# ...
+coverage = myspec.checkcoverage()
+```
+You will get something like the following if each of the character in the line does not get read exactly once
+```
+Traceback (most recent call last):
+  File "/mnt/c/Users/andy_/Documents/git/fixedwidthfile/example/sample.py", line 36, in <module>
+    coverage = fwf.checkSpecCoverage()
+               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/andy_/Documents/git/fixedwidthfile/example/fixedwidthfile/fwf.py", line 70, in checkSpecCoverage
+    raise Exception(errtxt)
+Exception: There maybe an issue with the coverage of the spec file,
+    please review the following position (position: [11, 12, 13, 14, 15, 16, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33])
+    a full coverage should have each of the character position
+    referenced exactly onces (1) coverage: '1111111111000000111111000000000001111111'
+```
+The method will exits with raised error if the condition is not met, and provide you with information about the characters that is not read exactly once. Also, it will provide you with a coverage string where each of the numbers in the string represents the number of times the character at the given position is read. 
+
+If don't care for the raised error and you just want a coverage string, you can simply supply the method with a False boolean to just retrieve the coverage string.
+```
+coverage = fwf.checkSpecCoverage(False)
+print(f"{coverage}")
+```
+
 # About Me
 My name is Hsiang-An (Andy) Chien. Currently, full-time data scientist slash ETL engineer (the title changes so fast these days), part-time general computing and gaming enthuiast.
 
@@ -123,7 +153,6 @@ I dedicate this work and hopefully a piece of me to the world for my loving fami
 
 # Appendix
 ## Why is fixed width file sill favoured by mainframe?
-<a name="app-fll"/>
 Other than working with legacy content, it did not occur to me that the fixed width file retain its usefulness in today's climate because of big data.
 
 From the days of the old, fixed width file was favoured by the mainframe due to it's simplistic nature free from any proprietary file format. It does not take specialized library or package to produce and parse basic string from the mainframe.
@@ -132,6 +161,9 @@ Today, the fixed width file continue to serve such functionality through its pre
 
 Source: https://stackoverflow.com/questions/7666780/why-are-fixed-width-file-formats-still-in-use
 
-## Why does your library use 1-based positioning instead of 0 based?
-<a name="app-1based"/>
-The goal of this library
+## Why does your library use 1-based positioning instead of 0-based?
+The goal of this library is to make it as easy as possible for its users to work with the fixed width file as possible. While computer science purist will say all programming must be zero based, it is hard to ignore that most raw text file viewing application (including one of the programming gold standard, VIM) uses 1-based character/column counter.
+
+I don't know too many people that actually enjoys subtracting 1 every time when they see a number; therefore the library uses 1-based positioning.
+
+![vim column counting is 1-based](https://github.com/andychien009/fixedwidthfile/blob/main/img/vim-linenumber.png?raw=true)

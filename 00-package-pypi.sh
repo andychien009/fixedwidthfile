@@ -2,6 +2,9 @@
 
 # instruction: https://packaging.python.org/en/latest/tutorials/packaging-projects/
 
+# clear dist directory
+rm -rf dist/*
+
 # packages needed for upload
 # python3 -m pip install --upgrade build twine
 

@@ -19,7 +19,7 @@ import traceback
 
 class FixedWidthFile:
     def __init__(self, fsfpath):
-        self.flf = None
+        self.fwf = None
         self.fs = []
         self.header = []
         self.nextline = []
@@ -47,7 +47,7 @@ class FixedWidthFile:
         
         self.maxlen = max([v[1] for (k, v) in self.specDict.items()]) + 1
 
-    def checkSpecCoverage(self):
+    def checkSpecCoverage(self, raiseError=True):
         coverage = "0" * self.maxlen
 
         overlapped = False
@@ -67,7 +67,8 @@ class FixedWidthFile:
                   f"    a full coverage should have each of the character position\n" + \
                   f"    referenced exactly onces (1) " + \
                   f"coverage: '{coverage}'"
-            raise Exception(errtxt)
+            if raiseError:
+                raise Exception(errtxt)
 
         return coverage
 
@@ -82,8 +83,8 @@ class FixedWidthFile:
     def parseSingleLine(self, l):
         return parseLine(l, self.header, self.specDict)
 
-    def getIterator(self, flfpath):
-        return flfIterator(flfpath, self.header, self.specDict)
+    def getIterator(self, fwfpath):
+        return fwfIterator(fwfpath, self.header, self.specDict)
 
     def getHeader(self):
         return self.header
@@ -91,7 +92,7 @@ class FixedWidthFile:
     def replaceAtLoc(self, l, s, e, rep):
         return replaceAtLoc(l, s, e, rep)
 
-    def getFlfLine(self, data):
+    def getFwfLine(self, data):
         if type(data) is dict:
             d = data
         elif type(data) is pd.Series:
@@ -124,7 +125,7 @@ class FixedWidthFile:
 
 
     def __repr__(self):
-        return f"file: {self.flfpath}, spec: {self.specDict}"
+        return f"file: {self.fwfpath}, spec: {self.specDict}"
 
 def getStrSliceOneBased(s, start, end):
     if start == end:
@@ -175,21 +176,21 @@ def parseLine(l, header, fspecDict):
     return ret
 
 
-class flfIterator():
-    def __init__(self, flfpath, header, specDict):
-        self.flfpath = flfpath
+class fwfIterator():
+    def __init__(self, fwfpath, header, specDict):
+        self.fwfpath = fwfpath
         self.header = header
         self.fspecDict = specDict
-        self.flf = open(flfpath,'r')
+        self.fwf = open(fwfpath,'r')
 
     def __iter__(self):
         return self
 
     def __next__(self):
-        l = self.flf.readline()
+        l = self.fwf.readline()
 
         if len(l) == 0:
-            self.flf.close()
+            self.fwf.close()
             raise StopIteration
 
         return parseLine(l, self.header, self.fspecDict)
