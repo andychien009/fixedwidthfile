@@ -140,14 +140,14 @@ print(f"{coverage}")
 ```
 
 # About Me
-My name is Hsiang-An (Andy) Chien. Currently, full-time data scientist slash ETL engineer (the title changes so fast these days), part-time general computing and gaming enthusiast.
+My name is Hsiang-An (Andy) Chien. Currently, full-time ETL Engineer and Business Intelligence Solution Developer (the title changes so fast these days), part-time general computing and gaming enthusiast.
 
-Would love to see my work being used in more ways than one to tackle common challenges others may have encountered along their way. Share this library with others who may need it.
+I would love to hear about my work being used to tackle common challenges others may have encountered along their way. Share this program and library with others who may need it.
 
 If you have success story to tell, it would make my day! Message me at andy_chien (at) hotmail.com.
 
 # Dedication
-I dedicate this work and hopefully a piece of me to the world for my loving family: Jina Chiang, Julia, and Alison Chien. I hope that a piece of me will be around and kicking on the interweb watching over you through time.
+I dedicate this work, a piece of me, for the world and for my loving family: Jina Chiang, Julia, and Alison Chien. I hope that a piece of me will be around and kicking on the interweb watching over you through time.
 
 # Appendix
 ## Why is fixed width file sill favoured by mainframe?
